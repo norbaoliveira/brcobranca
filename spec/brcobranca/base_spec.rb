@@ -25,6 +25,10 @@ module Brcobranca #:nodoc:[all]
         }
       end
 
+      it "possui o template padrão definido" do
+        Brcobranca::Boleto::Base.new.template_name.should eql("modelo_generico.eps")
+      end
+
       it "Criar nova instancia com atributos padrões" do
         boleto_novo = Brcobranca::Boleto::Base.new
         boleto_novo.especie_documento.should eql("DM")

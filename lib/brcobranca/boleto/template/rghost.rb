@@ -70,7 +70,7 @@ module Brcobranca
         def modelo_generico(boleto, options={})
           doc=Document.new :paper => :A4 # 210x297
 
-          template_path = File.join(File.dirname(__FILE__),'..','..','arquivos','templates','modelo_generico.eps')
+          template_path = File.join(File.dirname(__FILE__),'..','..','arquivos','templates', boleto.template_name)
 
           raise "Não foi possível encontrar o template. Verifique o caminho" unless File.exist?(template_path)
 
@@ -97,11 +97,10 @@ module Brcobranca
         def modelo_generico_multipage(boletos, options={})
           doc=Document.new :paper => :A4 # 210x297
 
-          template_path = File.join(File.dirname(__FILE__),'..','..','arquivos','templates','modelo_generico.eps')
+          boletos.each_with_index do |boleto, index|
+            template_path = File.join(File.dirname(__FILE__),'..','..','arquivos','templates',boleto.template_name)
 
           raise "Não foi possível encontrar o template. Verifique o caminho" unless File.exist?(template_path)
-
-          boletos.each_with_index do |boleto, index|
 
             modelo_generico_template(doc, boleto, template_path)
             modelo_generico_cabecalho(doc, boleto)

@@ -200,6 +200,12 @@ module Brcobranca
         raise Brcobranca::NaoImplementado.new("Sobreescreva este método na classe referente ao banco que você esta criando")
       end
 
+      # Nome do template a ser carregado
+      # @return [String]
+      def template_name
+        "modelo_generico.eps"
+      end
+
       private
 
       # Monta a primeira parte do código de barras, que é a mesma para todos bancos.
@@ -219,7 +225,6 @@ module Brcobranca
       def class_name
         self.class.to_s.split("::").last.downcase
       end
-
     end
   end
 end
